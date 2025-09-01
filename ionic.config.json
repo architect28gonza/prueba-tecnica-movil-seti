@@ -1,0 +1,7 @@
+{
+  "name": "pruebaTecnicaMovil",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react-vite"
+}
