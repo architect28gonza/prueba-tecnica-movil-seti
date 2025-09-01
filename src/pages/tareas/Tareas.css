@@ -1,0 +1,7 @@
+.container-card {
+    background-image: url("./img/undraw_medicine_hqqg.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 120px center;
+    box-shadow: none;
+}
