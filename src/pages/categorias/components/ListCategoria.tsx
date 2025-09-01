@@ -1,10 +1,6 @@
 import { IonAlert } from '@ionic/react';
 import { useState } from 'react';
 
-interface ContentCategoriaProps {
-    categoria: any;
-}
-
 const ListCategoria: React.FC<ContentCategoriaProps> = ({ categoria }) => {
     const [categoriaSeleccionada, setCategoriaSeleccionada] = useState<string>("");
 

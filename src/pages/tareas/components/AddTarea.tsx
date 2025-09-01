@@ -1,30 +1,32 @@
 import { IonAlert } from '@ionic/react';
 
-interface ContentTareaProps {
-    setTareas: (values: any[]) => void;
-}
+const AddTarea: React.FC<ContentSetTareas> = ({ setTareas }: any) => {
 
-const AddTarea: React.FC<ContentTareaProps> = ({ setTareas }: any) => {
-
+    /**
+     * Maneja el cierre del alert, extrae los datos del formulario,
+     * crea una nueva tarea y la guarda al inicio del listado en localStorage.
+     *
+     * @param event Evento disparado al cerrar el alert, que contiene los valores ingresados.
+     */
     const handleAlertDismiss = (event: CustomEvent) => {
-        const data = event.detail?.data?.values;
-        if (!data) return;
+        const values = event.detail?.data?.values;
+        if (!values) return;
 
-        const titulo = data['0'];
-        const descripcion = data['1'];
+        const [titulo, descripcion] = [values['0'], values['1']];
 
         const nuevaTarea = {
             titulo,
+            descripcion,
             fecha: new Date().toISOString().split('T')[0],
             categoria: 'Sin asignar',
-            descripcion,
             completada: false,
         };
 
-        const tareasGuardadas = JSON.parse(localStorage.getItem('tareas') || '[]');
+        const tareasGuardadas: typeof nuevaTarea[] = JSON.parse(localStorage.getItem('tareas') || '[]');
         tareasGuardadas.unshift(nuevaTarea);
+
         localStorage.setItem('tareas', JSON.stringify(tareasGuardadas));
-        setTareas(tareasGuardadas)
+        setTareas(tareasGuardadas);
     };
 
     return (
@@ -33,7 +35,7 @@ const AddTarea: React.FC<ContentTareaProps> = ({ setTareas }: any) => {
                 trigger='add-alert'
                 onDidDismiss={handleAlertDismiss}
                 header="Llene los datos para poder registrar una tarea"
-                buttons={['OK']}
+                buttons={['Guardar']}
                 inputs={[
                     { placeholder: 'Tarea a registrar' },
                     { type: 'textarea', placeholder: 'Descripcion de la tarea' },

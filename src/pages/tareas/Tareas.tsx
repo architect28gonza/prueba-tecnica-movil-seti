@@ -8,15 +8,20 @@ import { initialTareas } from '../../utils/Constants';
 const Tareas: React.FC = () => {
 
   const [tareas, setTareas] = useState(initialTareas);
-  const setTareasValues = (values: any) => setTareas(values);
+  const setTareasValues = (values: any[]) => setTareas(values);
 
   return (
     <IonPage>
       <IonContent fullscreen>
-        <CardTitle setTareas={setTareas} />
-        <br />
-        <GridComponent />
-        <ContentTarea tareas={tareas} setTareas={setTareasValues} />
+        <div className="container-header-tareas">
+          <CardTitle setTareas={setTareas} />
+        </div>
+        <div className="container-grid-tarea">
+          <GridComponent />
+        </div>
+        <div className="container-contenido-tarea">
+          <ContentTarea tareas={tareas} setTareas={setTareasValues} />
+        </div>
       </IonContent>
     </IonPage>
   );

@@ -1,10 +1,5 @@
 import { IonAlert } from '@ionic/react';
 
-interface ContentCategoriaProps {
-    categoria: any;
-    setCategoria: (values: any[]) => void;
-}
-
 const AddCategoria: React.FC<ContentCategoriaProps> = ({ categoria, setCategoria }) => {
 
     const handleAlertDismiss = (event: CustomEvent) => {
